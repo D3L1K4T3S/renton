@@ -1,0 +1,37 @@
+version: '3.5'
+
+services:
+
+    auth-service:
+        build:
+            context: .
+            args:
+                ACTIVE_PROFILE: dev
+        container_name: back-service
+        user: admin
+        ports:
+            - "8080:8080"
+        restart: unless-stopped
+        depends_on:
+            auth-database:
+                condition: service_started
+        networks:
+            - localnet
+
+    auth-database:
+        container_name: back-database
+        image: postgres:15
+        ports:
+            - "5440:5432"
+        restart: unless-stopped
+        environment:
+            - POSTGRES_DB=postgres
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+        networks:
+            - localnet
+
+networks:
+    localnet:
+        name: localnet
+        driver: bridge
