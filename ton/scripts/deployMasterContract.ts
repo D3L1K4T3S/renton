@@ -1,11 +1,11 @@
 import { toNano } from '@ton/core';
-import { TonContract } from '../wrappers/TonContract';
+import { MasterContract } from '../wrappers/MasterContract';
 import { NetworkProvider } from '@ton/blueprint';
 
 export async function run(provider: NetworkProvider) {
-    const tonContract = provider.open(await TonContract.fromInit(BigInt(Math.floor(Math.random() * 10000))));
+    const masterContract = provider.open(await MasterContract.fromInit());
 
-    await tonContract.send(
+    await masterContract.send(
         provider.sender(),
         {
             value: toNano('0.05'),
@@ -16,7 +16,7 @@ export async function run(provider: NetworkProvider) {
         }
     );
 
-    await provider.waitForDeploy(tonContract.address);
+    await provider.waitForDeploy(masterContract.address);
 
-    console.log('ID', await tonContract.getId());
+    // run methods on `masterContract`
 }
