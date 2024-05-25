@@ -62,4 +62,18 @@ contract MasterContract with Deployable, Ownable {
             body: Receiver{to: msg.to}.toCell(),
         });
     }
+
+    get fun getBalance(): String {
+        return myBalance().toCoinsString();
+    }
+
+    get fun getAddress(): Address {
+        return myAddress();
+    }
+
+    get fun getChildAddress(id: Int): Address {
+        let init: StateInit = initOf ChildContract(id, myAddress());
+        return contractAddress(init);
+    }
+
 }
