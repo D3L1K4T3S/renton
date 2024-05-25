@@ -43,13 +43,23 @@ contract MasterContract with Deployable, Ownable {
     receive(){
     }
 
-    receive(msg: Withdraw){
+    receive("Withdraw"){
         self.requireOwner();
         send(SendParameters{
             to: self.owner,
             value: 0,
-            mode: SendRemainingBalance,
-            body: "Withdraw from master".asComment(),
+            mode: SendRemainingBalance + SendIgnoreErrors,
+            body: "Withdraw".asComment(),
+        });
+    }
+
+    receive(msg: Withdraw){
+        self.requireOwner();
+        let init: StateInit = initOf ChildContract(msg.id, myAddress());
+        send(SendParameters{
+            to: contractAddress(init),
+            value: 0,
+            body: Receiver{to: msg.to}.toCell(),
         });
     }
 }

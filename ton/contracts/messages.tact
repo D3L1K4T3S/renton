@@ -11,10 +11,15 @@ message Add {
 
 message Withdraw {
     to: Address;
-    amount: Int as coins;
+    id: Int as uint256;
+}
+
+message Receiver {
+    to: Address;
 }
 
 message Pay {
     amount: Int as coins;
+    metadata: String;
 }
 
