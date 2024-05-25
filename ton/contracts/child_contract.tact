@@ -43,5 +43,7 @@ contract ChildContract with Deployable, Ownable {
 
     }
 
-
+    get fun getBalance(): String {
+        return myBalance().toCoinsString();
+    }
 }
