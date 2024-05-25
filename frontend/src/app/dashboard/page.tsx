@@ -2,6 +2,8 @@ import React from 'react';
 import {Accordion, AccordionDetails, AccordionSummary, Box, Button, Grid, TextField, Typography} from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DoughnutChart from "@/components/doughnutChart/doughnutChart";
+import CopyButton from "@/components/copyButton/copyButton";
+import TextWithCopy from "@/components/textWithCopy/textWithCopy";
 
 const blockStyle = {
     border: '1px solid',
@@ -21,15 +23,17 @@ const Page = () => {
             <Grid container spacing={2}>
                 <Grid item xs={12} md={7}>
                     <Box sx={blockStyle}>
-                        <Typography
-                            sx={{maxWidth: '100%', overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis'}}>
+                        <TextWithCopy copy='бебеебебебебебеебеебебеебебеебебебебебеебеб'>
                             <b>Адрес:</b> бебеебебебебебеебеебебеебебеебебебебебеебеб
-                        </Typography>
+                        </TextWithCopy>
                     </Box>
                 </Grid>
                 <Grid item xs={12} md={5}>
                     <Box sx={blockStyle}>
-                        <b>Баланс:</b> 50 рублей
+                        <Typography
+                            sx={{maxWidth: '100%', overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis'}}>
+                            <b>Баланс:</b> 50 рублей
+                        </Typography>
                     </Box>
                 </Grid>
                 <Grid item xs={12} md={5}>
@@ -63,7 +67,8 @@ const Page = () => {
                                             textOverflow: 'ellipsis',
                                             fontSize: '14px'
                                         }}>
-                                        <b>Перевод на адрес:</b> бубубубуубубубуубубубубуубубубубуб
+                                        <b>Перевод на адрес:</b> бубубубуубубубуубубубубуубубубубуб <CopyButton
+                                        text='бубубубуубубубуубубубубуубубубубуб'/>
                                     </Typography>
                                     <Typography
                                         sx={{
@@ -92,7 +97,8 @@ const Page = () => {
                                             textOverflow: 'ellipsis',
                                             fontSize: '14px'
                                         }}>
-                                        <b>Перевод на адрес:</b> бубубубуубубубуубубубубуубубубубуб
+                                        <b>Перевод на адрес:</b> бубубубуубубубуубубубубуубубубубуб <CopyButton
+                                        text='бубубубуубубубуубубубубуубубубубуб'/>
                                     </Typography>
                                     <Typography
                                         sx={{
