@@ -1,12 +1,6 @@
 'use client'
 import {createTheme} from "@mui/material";
-import { Roboto } from "next/font/google";
-
-const roboto = Roboto({
-    weight: ['300', '400', '500', '700'],
-    subsets: ['latin', 'cyrillic'],
-    display: 'swap',
-});
+import {roboto} from "@/shared/font";
 
 export const theme = createTheme({
     palette: {

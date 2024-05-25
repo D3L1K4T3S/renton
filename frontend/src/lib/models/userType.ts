@@ -1,11 +1,7 @@
-export type UserType = {
-    access: string,
-    refresh: string
-}
-
-export type UserInformationType = {
-    id: number,
-    username: string
+export type UserResponseType = {
+    type: string,
+    accessToken: string,
+    refreshToken: string
 }
 
 export type AuthQueryType = {
@@ -13,19 +9,10 @@ export type AuthQueryType = {
     password: string
 }
 
-export type RegisterQueryType = {
-    username: string,
-    password: string,
-    re_password: string
-}
-
-export type RefreshQueryType = {
-    refresh: string
+export type RefreshType = {
+    refreshToken: string
 }
 
 export type AccessType = {
-    access: string
-}
-export type TokenQueryType = {
-    token: string
+    accessToken: string
 }

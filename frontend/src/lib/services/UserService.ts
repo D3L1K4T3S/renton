@@ -3,57 +3,35 @@ import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {
     AccessType,
     AuthQueryType,
-    RefreshQueryType,
-    RegisterQueryType, TokenQueryType,
-    UserInformationType,
-    UserType
+    RefreshType,
+    UserResponseType
 } from "../models/userType";
 
 export const userAPI = createApi({
     reducerPath: 'userAPI',
     baseQuery: fetchBaseQuery({
-        baseUrl: process.env.NEXT_PUBLIC_BACKEND_LINK + 'auth/'
+        baseUrl: process.env.NEXT_PUBLIC_BACKEND_LINK
     }),
     endpoints: (build) => ({
-        registerUser: build.mutation<UserInformationType, RegisterQueryType>({
+        registerUser: build.mutation<UserResponseType, AuthQueryType>({
             query: (body) => ({
-                url: 'users/',
+                url: 'public/reg',
                 method: 'POST',
                 body
             })
         }),
-        authUser: build.mutation<UserType, AuthQueryType>({
+        authUser: build.mutation<UserResponseType, AuthQueryType>({
             query: (body) => ({
-                url: 'jwt/create/',
+                url: 'public/log',
                 method: 'POST',
                 body
             })
         }),
-        verifyUser: build.query<null, TokenQueryType>({
+        refreshUser: build.mutation<AccessType, RefreshType>({
             query: (body) => ({
-                url: 'jwt/verify/',
+                url: 'public/auth/refresh',
                 method: 'POST',
                 body
-            })
-        }),
-        refreshUser: build.mutation<AccessType, RefreshQueryType>({
-            query: (body) => ({
-                url: 'jwt/refresh/',
-                method: 'POST',
-                body
-            })
-        }),
-        logoutUser: build.mutation<UserType, RefreshQueryType>({
-            query: (body) => ({
-                url: 'jwt/logout/',
-                method: 'POST',
-                body
-            })
-        }),
-        getUserInformation: build.query<UserInformationType, AccessType>({
-            query: (params) => ({
-                url: 'users/me/',
-                headers: {'Authorization': `Bearer ${params.access}`}
             })
         })
     })

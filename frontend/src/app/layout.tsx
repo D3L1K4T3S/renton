@@ -6,6 +6,7 @@ import {theme} from "@/shared/theme";
 import React from "react";
 import StoreProvider from "@/lib/storeProvider";
 import Header from "@/components/header/header";
+import {roboto} from "@/shared/font";
 
 export const metadata: Metadata = {
     title: "Хакатон",
@@ -19,12 +20,12 @@ export default function RootLayout(
     }>) {
     return (
         <html lang="ru">
-        <body style={{background: '#151515'}}>
+        <body style={{background: '#151515'}} className={roboto.className}>
         <AppRouterCacheProvider>
             <ThemeProvider theme={theme}>
                 <StoreProvider>
                     <Header/>
-                    <Container sx={{pt: '20px', pb: '20px'}}>
+                    <Container sx={{pt: '20px', pb: '20px', color: 'text.primary'}}>
                         {children}
                     </Container>
                     <footer/>
