@@ -1,36 +1,17 @@
 import "@stdlib/deploy";
-import "./messages.tact";
+import "./messages";
 
-contract ChildContract with Deployable, Ownable {
+contract ChildContract with Deployable {
 
-    owner: Address;
+    parent: Address;
     id: Int as uint256;
     balance: Int as coins;
 
-    init(id: Int, owner: Address) {
-        self.owner = owner;
+    init(id: Int, parent:Address) {
+        self.parent = parent;
         self.id = id;
         self.balance = 0;
     }
 
-    receive(msg: Add){
-        self.balance += msg.amount;
-    }
-
-    receive(msg: Withdraw){
-
-    }
-
-    receive(msg: Pay){
-
-    }
-
-    receive(){
-
-    }
-
-    bounced(){
-
-    }
 
 }
