@@ -5,7 +5,7 @@ import "./messages";
 
 contract MasterContract with Deployable, Ownable {
 
-    const MinTonBalance: Int = ton("1");
+    const minTonBalance: Int = ton("1");
 
     owner: Address;
     balance: Int as coins;
@@ -15,17 +15,20 @@ contract MasterContract with Deployable, Ownable {
         self.balance = 0;
     }
 
+
+
     receive(msg: NewChild){
         self.requireOwner();
         let init: StateInit = initOf ChildContract(msg.id, myAddress());
         send(SendParameters{
             to: contractAddress(init),
             value: msg.amount,
-            body: "Create new user".asComment(),
             mode: SendIgnoreErrors,
+            bounce: false,
             code: init.code,
-            data: init.data,
+            data: init.data
         });
+
         self.reply("new user created".asComment());
     }
 
@@ -37,10 +40,12 @@ contract MasterContract with Deployable, Ownable {
             value: msg.amount,
             mode: SendIgnoreErrors,
             body: msg.metadata.asComment(),
+            bounce: false
         });
     }
 
     receive(){
+        // accept incoming TON transfers
     }
 
     receive("Withdraw"){
@@ -49,7 +54,7 @@ contract MasterContract with Deployable, Ownable {
             to: self.owner,
             value: 0,
             mode: SendRemainingBalance + SendIgnoreErrors,
-            body: "Withdraw".asComment(),
+            body: "Withdraw".asComment()
         });
     }
 
@@ -63,15 +68,15 @@ contract MasterContract with Deployable, Ownable {
         });
     }
 
-    get fun getBalance(): String {
-        return myBalance().toCoinsString();
+    get fun balance(): Int {
+        return myBalance();
     }
 
-    get fun getAddress(): Address {
+    get fun address(): Address {
         return myAddress();
     }
 
-    get fun getChildAddress(id: Int): Address {
+    get fun childAddress(id: Int): Address {
         let init: StateInit = initOf ChildContract(id, myAddress());
         return contractAddress(init);
     }

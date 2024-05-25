@@ -24,7 +24,7 @@ contract ChildContract with Deployable, Ownable {
             to: self.owner,
             value: msg.amount,
             mode: SendIgnoreErrors,
-            body: msg.metadata.asComment(),
+            body: msg.metadata.asComment()
         });
     }
 
@@ -34,16 +34,15 @@ contract ChildContract with Deployable, Ownable {
             to: msg.to,
             value: 0,
             mode: SendRemainingBalance + SendIgnoreErrors,
-            body: "Withdraw".asComment(),
+            body: "Withdraw".asComment()
         });
     }
 
-    // Add coins
     receive(){
-
+        // accept incoming TON transfers
     }
 
-    get fun getBalance(): String {
-        return myBalance().toCoinsString();
+    get fun balance(): Int {
+        return myBalance();
     }
 }
