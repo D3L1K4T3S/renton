@@ -11,9 +11,10 @@ describe('ChildContract', () => {
     beforeEach(async () => {
         blockchain = await Blockchain.create();
 
-        childContract = blockchain.openContract(await ChildContract.fromInit());
-
         deployer = await blockchain.treasury('deployer');
+
+        childContract = blockchain.openContract(await ChildContract.fromInit(1n, deployer.address));
+
 
         const deployResult = await childContract.send(
             deployer.getSender(),

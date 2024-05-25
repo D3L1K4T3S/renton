@@ -9,6 +9,10 @@ message Add {
     metadata: String;
 }
 
+message Internal {
+    amount: Int as coins;
+}
+
 message Withdraw {
     to: Address;
     id: Int as uint256;
