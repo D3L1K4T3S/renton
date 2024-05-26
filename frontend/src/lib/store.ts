@@ -13,7 +13,7 @@ import createWebStorage from "redux-persist/es/storage/createWebStorage";
 import {userAPI} from "./services/UserService";
 
 import userReducer from './reducers/userSlice';
-
+import {telegramAPI} from "@/lib/services/TelegramService";
 
 const createNoopStorage = () => {
     return {
@@ -43,6 +43,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
     userReducer,
     [userAPI.reducerPath]: userAPI.reducer,
+    [telegramAPI.reducerPath]: telegramAPI.reducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
@@ -54,7 +55,7 @@ export const store = configureStore({
             serializableCheck: {
                 ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
             },
-        }).concat(userAPI.middleware)
+        }).concat(userAPI.middleware).concat(telegramAPI.middleware)
 })
 
 export type RootState = ReturnType<typeof store.getState>;
