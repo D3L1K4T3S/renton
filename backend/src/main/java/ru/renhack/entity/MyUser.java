@@ -33,4 +33,13 @@ public class MyUser extends AbstractEntity {
     @Column(name = "VERIFY_CODE")
     private String verifyCode;
 
+    @Column(name = "TG_ID")
+    private String tgId;
+
+    @Column(name = "TG_NAME")
+    private String tgName;
+
+    @Column(name = "ACTIVATED", columnDefinition = "boolean default false")
+    private Boolean activated;
+
 }

@@ -61,7 +61,7 @@ public class AuthService {
                     throw new AuthException("Пользователь не найден");
                 }
                 final String accessToken = jwtProvider.generateAccessToken(user);
-                return new JwtResponse(accessToken, null);
+                return new JwtResponse(accessToken, refreshToken);
             }
         }
         return new JwtResponse(null, null);

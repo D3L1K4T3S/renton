@@ -13,6 +13,11 @@ public interface ControllerURLs {
 
     String TEST = PUBLIC_PREFIX + "/test";
 
-    String VERIFY = PRIVATE_PREFIX + "/verify";
+    String VERIFY = PRIVATE_PREFIX + "/verifytg";
+    String CHECK_ACTIVATED_TG = PRIVATE_PREFIX + "/isactive";
+
+    String TG_RAND_WORDS = PUBLIC_PREFIX + "/tg/words";
+
+    String TG_COMPARE_CODE = PUBLIC_PREFIX + "/tg/compare";
 
 }

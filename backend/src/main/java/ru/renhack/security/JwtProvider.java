@@ -48,6 +48,7 @@ public class JwtProvider {
 
         return Jwts.builder()
                 .claim("roles", roles)
+                .claim("id", user.getId())
                 .setSubject(user.getUsername())
                 .setIssuedAt(Date.from(Instant.now()))
                 .setExpiration(accessExpiration)
