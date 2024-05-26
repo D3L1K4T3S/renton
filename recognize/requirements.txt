@@ -1,0 +1,4 @@
+speechkit
+aiogram==2.25
+fastapi
+pydantic
