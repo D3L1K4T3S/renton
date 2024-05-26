@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from "next/link";
 import {Button} from "@mui/material";
-import {useUsername} from "@/hooks/useUsername";
+import {useUserData} from "@/hooks/useUserData";
 import {useAuth} from "@/hooks/useAuth";
 import PersonIcon from '@mui/icons-material/Person';
 import {useAppDispatch} from "@/lib/hooks";
@@ -12,7 +12,7 @@ import {useRouter} from "next/navigation";
 
 const AuthButtons = () => {
     const {isAuthenticated} = useAuth()
-    const username = useUsername()
+    const {username} = useUserData()
     const dispatch = useAppDispatch()
     const {push} = useRouter()
 
@@ -25,7 +25,9 @@ const AuthButtons = () => {
             ? <>
                 <PersonIcon/>
                 {username}
-                <Button variant='outlined' color="inherit" onClick={signOut}>Выйти</Button>
+                <Button variant='outlined' color="inherit" onClick={signOut} sx={{ml: '10px'}}>
+                    Выйти
+                </Button>
             </>
             : <>
                 <Link href='/login'>

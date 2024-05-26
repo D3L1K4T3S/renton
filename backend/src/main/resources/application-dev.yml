@@ -1,0 +1,42 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: back-service
+  datasource:
+    url: jdbc:postgresql://auth-database:5432/postgres
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  flyway:
+    url: jdbc:postgresql://auth-database:5432/postgres
+    locations: classpath:db/migration
+    user: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    generate-ddl: true
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
+  pattern:
+    console: "%C{1.} [%-5level] %d{HH:mm:ss} - %msg%n"
+
+jwt:
+  secret:
+    access: "ekamjUY7yNphsvyrQjnHKeYuVafpNs/OIieiVgvIjduaiciFs/Yen+0ivAlpkdhtgkNHMMBstyY5xku5+gwmRg=="
+    refresh: "aC9ISNYzVS+HeM/NCsRR1AI5ssL9wOPGzeGaEkgbFUXnCB2Zn2cf1ZB7qEn107zeF3Tz+zomXadCY84xboZ1cg=="
+  password:
+    encoder:
+      secret: 4a9aa5a4011b33425ca5e2fdc345d051
+      iteration: 64
+      key-length: 256
