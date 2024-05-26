@@ -1,6 +1,5 @@
 .DS_Store
 .idea/
 
-recognize/.venv/
-recognize/requests/
-recognize/speechkit/
+recognize/venv/
+
