@@ -32,7 +32,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorizeHttpRequests ->
                         authorizeHttpRequests
                                 .requestMatchers("/public/**").permitAll()
-                                .requestMatchers("/private/**").authenticated()
+                                .requestMatchers("/private/**").permitAll()
                                 .and()
                                 .addFilterAfter(authFilter, UsernamePasswordAuthenticationFilter.class)
                 )
