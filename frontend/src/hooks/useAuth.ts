@@ -44,10 +44,21 @@ export const useAuth = () => {
     useEffect(() => {
         if (access && refresh) {
             if (pathname === '/login' || pathname === '/reg') {
-                push('/')
+                push('/dashboard')
+            }
+        }
+        else {
+            if (pathname === '/dashboard') {
+                push('/login')
             }
         }
     }, [refresh, pathname])
+
+    useEffect(() => {
+        if (!access && !refresh) {
+            setIsAuthenticated(false)
+        }
+    }, [access, refresh]);
 
     return {
         isAuthenticated
